@@ -1,0 +1,10 @@
+8     : L, system size
+2.27 : T, temperature
+2 : seed of the Mersenne twister(any 32-bit integer except for 0 will do).
+random : initial configuration. "random" or "ferromag"
+Metropolis : algorithm (You can choose only "Metropolis" currently)
+2000   : thermalization_step
+1000000  : MC_step
+Jackknife : data analysis method (You can choose only "Jackknife" currently)
+19 : number of blocksizes for the Jackknife analysis
+1 2 5 10 20 50 100 200 500 1000 2000 3000 4000 5000 6000 7000 8000 9000 10000 : blocksizes for the Jackknife analysis
