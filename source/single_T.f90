@@ -72,6 +72,7 @@ program main
   ! write MCMC result
   open(9, file = "result/MCMC_sequence.txt", status = "replace")
   write(9, *) "#1: MC_step, 2: Energy E, 3: total magnetization M, 4: squared total magnetization M2"
+  write(9, *) "# Note that the quantities are not normalized as the quantities per site."
   do i = 1, MC_step
     write(9,*) i, E_arr(i), M_arr(i), M2_arr(i)
   end do
@@ -79,7 +80,9 @@ program main
 
   ! data analysis
   open(9, file = "result/jackknife_result.txt")
-  write(9, *) "#1: block size, 2: E_ave, 3: E_err, 4: M_ave, 5, M_err, 6: M2_ave, 7: M2_err, 8: Cv, 9: Cv_err, 10: chi, 11: chi_err"
+  write(9, *) "#1: block size, 2: E_ave/(L^2), 3: E_err/(L^2), 4: M_ave/(L^2), 5, M_err/(L^2), &
+  6: M2_ave/(L^4), 7: M2_err/(L^4), 8: Cv/(L^2), 9: Cv_err/(L^2), 10: chi/(L^2), 11: chi_err/(L^2)"
+  write(9, *) "the printed quantities are normalized as the quantity per site."
   do i = 1, N_blocksizes
     call jackknife_ave(MC_step, E_arr, blocksizes(i), E_ave, E_err) ! calculate average energy and its error
     call jackknife_ave(MC_step, M_arr, blocksizes(i), M_ave, M_err) ! calculate average magnetization and its error
@@ -93,7 +96,8 @@ program main
     chi = chi/T
     chi_err = chi_err/T
 
-    write(9, *) blocksizes(i), E_ave, E_err, M_ave, M_err, M2_ave, M2_err, Cv, Cv_err, chi, chi_err
+    write(9, *) blocksizes(i), E_ave/(L*L), E_err/(L*L), M_ave/(L*L), &
+    M_err/(L*L), M2_ave/(L**4), M2_err/(L**4), Cv/(L*L), Cv_err/(L*L), chi/(L*L), chi_err/(L*L)
   end do
   close(9)
 

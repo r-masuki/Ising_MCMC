@@ -47,8 +47,8 @@ $ gnuplot "T_dependence.plt"
 3. 得られる実行結果の概要は以下の通り。各物理量の温度依存性がプロットされる。
   
   * Ising_MCMC.log: logファイル。シミュレーションパラメータ等の設定。
-  * T_dependence.txt: 計算された物理量と誤差の温度依存性。
-  * hoge.esps: T_dependence.txtをプロットしたもの。
+  * T_dependence.txt: 計算された物理量と誤差の温度依存性。出力された物理量はサイトあたりの量として規格化されている。
+  * hoge.esps: T_dependence.txtをプロットしたもの。hogeは対応する物理量の名前。
 
   
 異なる設定でシミュレーションをしたい場合は、インプットファイルT_dependence.inpの中身を変えれば良い。異なるディレクトリでシミュレーションを回す場合は、コンパイル後にT_dependenceの中身を全て別のディレクトリにコピーしてコマンドを実行すれば良い。
@@ -89,9 +89,9 @@ $ gnuplot "jackknife.plt"
 3. 得られる実行結果の概要は以下の通り。MCMCステップごとの物理量の変化と、データ解析におけるブロックサイズ数に対する誤差の収束を確認できる。
   
   * Ising_MCMC.log: logファイル。シミュレーションパラメータ等の設定と最終結果。
-  * MCMC_sequence.txt: MCMCステップごとの物理量の値。全ての物理量は系全体の値で出力されており、スピンあたりに規格化した値ではない。
-  * MCMC_sequence_hoge.png: MCMC_sequence.txtをプロットしたもの。
-  * jackknife_hoge.eps: jackknife法を用いた場合に生成される。ブロックサイズに対する誤差の計算結果のプロット。サンプルインプットでは、
+  * MCMC_sequence.txt: MCMCステップごとの物理量の値。全ての物理量は系全体の値で出力されており、サイトあたりに規格化した値ではない。
+  * MCMC_sequence_hoge.png: MCMC_sequence.txtをプロットしたもの。hogeは対応する物理量の名前。
+  * jackknife_hoge.eps: jackknife法を用いた場合に生成される。ブロックサイズに対する誤差の計算結果のプロット。hogeは対応する物理量の名前。jackknifeの出力では、物理量はサイトあたりの値に規格化されている。
 
   
 異なる設定でシミュレーションをしたい場合は、インプットファイルsingle_T.inpの中身を変えれば良い。異なるディレクトリでシミュレーションを回す場合は、コンパイル後にsingle_Tの中身を全て別のディレクトリにコピーしてコマンドを実行すれば良い。

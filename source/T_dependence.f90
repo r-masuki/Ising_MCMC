@@ -68,7 +68,11 @@ program main
 
   ! run MCMC simulation
   open(9, file = "result/T_dependence.txt", status = "replace")
-  write(9, *) "#1: T, 2: E_ave, 3: E_err, 4: M_ave, 5, M_err, 6: M2_ave, 7: M2_err, 8: Cv, 9: Cv_err, 10: chi, 11: chi_err"
+  write(9, *) "#1: T, 2: E_ave/(L*L), 3: E_err/(L*L), 4: M_ave/(L*L), &
+  5, M_err/(L*L), 6: M2_ave/(L^4), 7: M2_err/(L^4), 8: Cv/(L*L), 9: Cv_err/(L*L), &
+  10: chi/(L*L), 11: chi_err/(L*L)"
+  write(9, *) "# all the printed physical quantities are &
+  normalized as the quantity per site."
 
   do i = 1, N_T
     print *, "T = ", T(i)
@@ -90,8 +94,10 @@ program main
     chi_err = chi_err/T(i)
 
     ! write result
-    write(9, *) T(i), E_ave, E_err, M_ave, M_err, M2_ave, M2_err, Cv, Cv_err, chi, chi_err
-    write(8, *) T(i), E_ave, E_err, M_ave, M_err, M2_ave, M2_err, Cv, Cv_err, chi, chi_err
+    write(9, *) T(i), E_ave/(L*L), E_err/(L*L), M_ave/(L*L), M_err/(L*L), &
+     M2_ave/(L*L*L*L), M2_err/(L*L*L*L), Cv/(L*L), Cv_err/(L*L), chi/(L*L), chi_err/(L*L)
+    write(8, *) T(i), E_ave/(L*L), E_err/(L*L), M_ave/(L*L), M_err/(L*L), &
+     M2_ave/(L*L*L*L), M2_err/(L*L*L*L), Cv/(L*L), Cv_err/(L*L), chi/(L*L), chi_err/(L*L)
   end do 
 
   close(9)
