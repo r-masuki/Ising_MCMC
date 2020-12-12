@@ -1,8 +1,12 @@
 # executable files
 *.out
+
 # test calculation directory
 /test_calculation
 
 # modules generated when compling
 *.mod
 *.mod0
+
+# txt file of execution commands
+commands.txt
